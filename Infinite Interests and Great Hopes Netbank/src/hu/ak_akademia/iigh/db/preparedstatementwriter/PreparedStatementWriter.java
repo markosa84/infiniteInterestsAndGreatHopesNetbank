@@ -1,5 +1,10 @@
 package hu.ak_akademia.iigh.db.preparedstatementwriter;
 
-public interface PreparedStatementWriter {
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+public interface PreparedStatementWriter<E> {
+
+	void write(PreparedStatement preparedStatement, E entity) throws SQLException;
 
 }

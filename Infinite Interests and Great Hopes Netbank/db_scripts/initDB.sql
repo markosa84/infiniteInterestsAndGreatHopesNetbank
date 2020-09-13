@@ -33,8 +33,8 @@ CREATE TABLE users (
 	email VARCHAR(100) NOT NULL,
 	newsletter CHAR(1) NOT NULL,
 	date_of_birth DATE,
-	registration_date TIMESTAMP NOT NULL,
-	last_login_date TIMESTAMP NOT NULL,
+	registration_date TIMESTAMP DEFAULT NOW() NOT NULL,
+	last_login_date TIMESTAMP,
 	user_status_id NUMERIC(20) NOT NULL,
 	CONSTRAINT users_pk PRIMARY KEY (login_name),
 	CONSTRAINT users_ck1 CHECK (LENGTH(login_name) >= 5),
@@ -88,3 +88,12 @@ CREATE TABLE transaction (
 	CONSTRAINT transaction_fk2 FOREIGN KEY (to_bank_account_number) REFERENCES bank_account(bank_account_number),
 	CONSTRAINT transaction_ck CHECK (amount < 2000000)
 	);
+
+INSERT INTO roles (role_id, role_name) VALUES (1, 'admin');
+INSERT INTO roles (role_id, role_name) VALUES (2, 'user');
+INSERT INTO user_status (user_status_id, status_name) VALUES (1, 'pending');
+INSERT INTO user_status (user_status_id, status_name) VALUES (2, 'active');
+INSERT INTO user_status (user_status_id, status_name) VALUES (3, 'inactive');
+INSERT INTO bank_account_status (bank_account_status_id, status_name) VALUES (1, 'active');
+INSERT INTO bank_account_status (bank_account_status_id, status_name) VALUES (2, 'inactive');
+COMMIT;
