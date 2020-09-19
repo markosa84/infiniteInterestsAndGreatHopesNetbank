@@ -19,6 +19,11 @@ public abstract class AbstractDatabaseDao<E> implements DatabaseDao<E> {
 	private ResultSetReader<E> resultSetReader;
 
 	public AbstractDatabaseDao(SqlBuilder sqlBuilder, PreparedStatementWriter<E> preparedStatementWriter, ResultSetReader<E> resultSetReader) {
+		try {
+			Class.forName("org.postgresql.Driver");
+		} catch (ClassNotFoundException e) {
+			throw new IIGHRuntimeException("Az adatbázis illesztőprogramot nem sikerült betölteni.");
+		}
 		this.sqlBuilder = sqlBuilder;
 		this.preparedStatementWriter = preparedStatementWriter;
 		this.resultSetReader = resultSetReader;

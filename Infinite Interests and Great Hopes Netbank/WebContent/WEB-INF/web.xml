@@ -3,10 +3,31 @@
 	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
 	id="WebApp_ID" version="4.0">
+
 	<display-name>Infinite Interests and Great Hopes Netbank</display-name>
+
 	<welcome-file-list>
-		<welcome-file>index.html</welcome-file>
+		<welcome-file>login.jsp</welcome-file>
 	</welcome-file-list>
+
+	<servlet>
+		<servlet-name>LoadRegistrationScreen</servlet-name>
+		<servlet-class>hu.ak_akademia.iigh.servlet.LoadRegistrationScreen</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>LoadRegistrationScreen</servlet-name>
+		<url-pattern>/loadRegistration</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>ValidateAndSaveRegistration</servlet-name>
+		<servlet-class>hu.ak_akademia.iigh.servlet.ValidateAndSaveRegistration</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ValidateAndSaveRegistration</servlet-name>
+		<url-pattern>/validateAndSaveRegistration</url-pattern>
+	</servlet-mapping>
+
 	<servlet>
 		<servlet-name>LoginServlet</servlet-name>
 		<servlet-class>hu.ak_akademia.iigh.servlet.LoginServlet</servlet-class>
@@ -15,4 +36,14 @@
 		<servlet-name>LoginServlet</servlet-name>
 		<url-pattern>/login</url-pattern>
 	</servlet-mapping>
+
+	<filter>
+		<filter-name>CharacterEncodingFilter</filter-name>
+		<filter-class>hu.ak_akademia.iigh.filter.CharacterEncodingFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>CharacterEncodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
 </web-app>

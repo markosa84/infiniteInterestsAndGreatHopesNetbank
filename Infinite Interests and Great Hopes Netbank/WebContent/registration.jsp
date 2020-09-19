@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!doctype html>
 <html lang="en">
 <head>
@@ -8,21 +10,24 @@
 </head>
 <body>
 	<!-- 	date_of_birth DATE, -->
-	<div class="container">
+	<div class="container w-50">
 		<h1>Regisztráció</h1>
-		<form>
+		<form action="validateAndSaveRegistration" method="post">
 			<div class="form-group">
 				<label for="loginName">Bejelentkezési név</label>
-				<input type="text" class="form-control" id="loginName" placeholder="user123">
+				<input type="text" class="form-control<c:if test='${validationErrors.containsKey("loginNameValidationResult")}'> is-invalid</c:if>" name="loginName" id="loginName" placeholder="user123" value="${param.loginName}">
+				<c:if test='${validationErrors.containsKey("loginNameValidationResult")}'>
+					<div class="invalid-feedback">${validationErrors.get("loginNameValidationResult")}</div>
+				</c:if>
 			</div>
 			<div class="form-row">
 				<div class="form-group col-md-6">
 					<label for="lastName">Vezetéknév</label>
-					<input type="text" class="form-control" name="lastName" id="lastName" placeholder="Kovács">
+					<input type="text" class="form-control" name="lastName" id="lastName" placeholder="Kovács" value="${param.lastName}">
 				</div>
 				<div class="form-group col-md-6">
 					<label for="firstName">Keresztnév</label>
-					<input type="text" class="form-control" name="firstName" id="firstName" placeholder="Béla">
+					<input type="text" class="form-control" name="firstName" id="firstName" placeholder="Béla" value="${param.firstName}">
 				</div>
 			</div>
 			<div class="form-row">
@@ -38,26 +43,27 @@
 			<div class="form-group">
 				<label for="roleId">Szerepkör</label>
 				<select name="roleId" id="roleId" class="form-control">
-					<option selected>Válasszon egyet...</option>
-					<option value="2">Ügyfél</option>
-					<option value="1">Adminisztrátor</option>
+					<option value="0" <c:if test='${param.roleId == null || param.roleId == 0}'>selected="selected"</c:if>>Válasszon egyet...</option>
+					<c:forEach var="userRole" items="${userRoles}">
+						<option value="${userRole.id}" <c:if test='${param.roleId != null && param.roleId == userRole.id}'>selected="selected"</c:if>>${userRole.displayName}</option>
+					</c:forEach>
 				</select>
 			</div>
 			<div class="form-group">
 				<label for="address">Lakcím</label>
-				<input type="text" class="form-control" name="address" id="address" placeholder="1038. Budapest, Fürdő utca 2.">
+				<input type="text" class="form-control" name="address" id="address" placeholder="1038. Budapest, Fürdő utca 2." value="${param.address}">
 			</div>
 			<div class="form-group">
 				<label for="phone">Telefonszám</label>
-				<input type="text" class="form-control" name="phone" id="phone" placeholder="+36 20 123 4567">
+				<input type="text" class="form-control" name="phone" id="phone" placeholder="+36 20 123 4567" value="${param.phone}">
 			</div>
 			<div class="form-group">
 				<label for="email">E-mail cím</label>
-				<input type="email" class="form-control" name="email" id="email" placeholder="kovacs.bela@domain.org">
+				<input type="email" class="form-control" name="email" id="email" placeholder="kovacs.bela@domain.org" value="${param.email}">
 			</div>
 			<div class="form-group">
 				<label for="dateOfBirth">Születési dátum</label>
-				<input type="date" class="form-control" name="dateOfBirth" id="dateOfBirth" placeholder="1999. 09. 05.">
+				<input type="date" class="form-control" name="dateOfBirth" id="dateOfBirth" placeholder="1999. 09. 05." value="${param.dateOfBirth}">
 			</div>
 			<div class="form-group">
 				<div class="form-check">

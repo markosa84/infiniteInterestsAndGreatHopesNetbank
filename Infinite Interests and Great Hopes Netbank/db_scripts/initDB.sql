@@ -13,6 +13,7 @@ DROP SEQUENCE IF EXISTS transaction_sequence;
 CREATE TABLE roles (
 	role_id NUMERIC(20) NOT NULL,
 	role_name VARCHAR(15) NOT NULL,
+	role_display_name VARCHAR(30) NOT NULL,
 	CONSTRAINT roles_pk PRIMARY KEY (role_id)
 	);
 
@@ -89,8 +90,8 @@ CREATE TABLE transaction (
 	CONSTRAINT transaction_ck CHECK (amount < 2000000)
 	);
 
-INSERT INTO roles (role_id, role_name) VALUES (1, 'admin');
-INSERT INTO roles (role_id, role_name) VALUES (2, 'user');
+INSERT INTO roles (role_id, role_name) VALUES (1, 'admin', 'Adminisztrátor');
+INSERT INTO roles (role_id, role_name) VALUES (2, 'user', 'Ügyfél');
 INSERT INTO user_status (user_status_id, status_name) VALUES (1, 'pending');
 INSERT INTO user_status (user_status_id, status_name) VALUES (2, 'active');
 INSERT INTO user_status (user_status_id, status_name) VALUES (3, 'inactive');
