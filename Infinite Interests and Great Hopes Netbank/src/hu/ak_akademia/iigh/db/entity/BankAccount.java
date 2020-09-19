@@ -13,6 +13,10 @@ public class BankAccount {
 	private BankAccountStatus bankAccountStatus;
 	private BankAccountType bankAccountType;
 
+	public BankAccount(String loginName) {
+		this.loginName = loginName;
+	}
+
 	public BankAccount(String bankAccountNumber, String aliasName, String loginName, Long currentBalance, String currencyType, BankAccountStatus bankAccountStatus, BankAccountType bankAccountType) {
 		this.bankAccountNumber = bankAccountNumber;
 		this.aliasName = aliasName;

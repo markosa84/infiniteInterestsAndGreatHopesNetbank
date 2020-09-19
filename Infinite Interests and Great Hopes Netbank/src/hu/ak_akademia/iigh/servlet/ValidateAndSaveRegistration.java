@@ -1,9 +1,6 @@
 package hu.ak_akademia.iigh.servlet;
 
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -15,13 +12,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import hu.ak_akademia.iigh.IIGHRuntimeException;
 import hu.ak_akademia.iigh.Role;
 import hu.ak_akademia.iigh.UserStatus;
 import hu.ak_akademia.iigh.db.dao.UserDao;
 import hu.ak_akademia.iigh.db.entity.User;
 import hu.ak_akademia.iigh.db.preparedstatementwriter.CreateUserPreparedStatementWriter;
 import hu.ak_akademia.iigh.db.sqlbuilder.CreateUserSqlBuilder;
+import hu.ak_akademia.iigh.util.PasswordManager;
 
 public class ValidateAndSaveRegistration extends HttpServlet {
 
@@ -50,11 +47,15 @@ public class ValidateAndSaveRegistration extends HttpServlet {
 			validationErrors.put("loginNameValidationResult", "Wrong login name.");
 		}
 
+		// A login name egyedi kell, hogy legyen. Ezt ellenőrizni kell. Ha már létezik
+		// ilyen, akkor hibaüzenettel ezt jelezni kell és a felhasználónak másikat kell
+		// választania.
+
 		// password és passwordConfirmation egyezését kell vizsgálni
 		// password erősségét kell vizsgálni
 
 		if (validationErrors.isEmpty()) {
-			String passwordHash = encrypt(password);
+			String passwordHash = new PasswordManager().encrypt(password);
 			Role role = Role.getById(Long.parseLong(roleIdAsString));
 			boolean newsletter = newsletterAsString != null;
 			LocalDate dateOfBirth = LocalDate.parse(dateOfBirthAsString, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
@@ -62,34 +63,12 @@ public class ValidateAndSaveRegistration extends HttpServlet {
 			User user = new User(loginName, passwordHash, firstName, lastName, role, address, phone, email, newsletter, dateOfBirth, now, null, UserStatus.PENDING);
 			UserDao userDao = new UserDao(new CreateUserSqlBuilder(), new CreateUserPreparedStatementWriter());
 			userDao.create(user);
-			response.sendRedirect("login.jsp");
+			response.sendRedirect("login.jsp?registrationSuccessful=true");
 		} else {
 			request.setAttribute("validationErrors", validationErrors);
 			request.getRequestDispatcher("loadRegistration")
 					.forward(request, response);
 		}
-	}
-
-	private String encrypt(String password) {
-		try {
-			MessageDigest digest = MessageDigest.getInstance("SHA-256");
-			byte[] encodedhash = digest.digest(password.getBytes(StandardCharsets.UTF_8));
-			return bytesToHex(encodedhash);
-		} catch (NoSuchAlgorithmException e) {
-			throw new IIGHRuntimeException("Unable to encrypt password.");
-		}
-	}
-
-	private static String bytesToHex(byte[] hash) {
-		StringBuffer hexString = new StringBuffer();
-		for (byte element : hash) {
-			String hex = Integer.toHexString(0xff & element);
-			if (hex.length() == 1) {
-				hexString.append('0');
-			}
-			hexString.append(hex);
-		}
-		return hexString.toString();
 	}
 
 }

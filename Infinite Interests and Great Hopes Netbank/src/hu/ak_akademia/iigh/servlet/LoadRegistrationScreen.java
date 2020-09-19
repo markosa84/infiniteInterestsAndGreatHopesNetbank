@@ -18,6 +18,7 @@ public class LoadRegistrationScreen extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RoleDao roleDao = new RoleDao(new GetAllRolesSqlBuilder(), new EmptyPreparedStatementWriter<Role>(), new FullRolesResultSetReader());
 		List<Role> roles = roleDao.retrieve(null);

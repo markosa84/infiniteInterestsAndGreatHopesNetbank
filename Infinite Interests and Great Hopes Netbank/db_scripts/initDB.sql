@@ -56,7 +56,7 @@ CREATE TABLE bank_account_status (
 
 CREATE TABLE bank_account_type (
 	bank_account_type_id NUMERIC(20) NOT NULL,
-	status_name VARCHAR(15) NOT NULL,
+	type_name VARCHAR(30) NOT NULL,
 	CONSTRAINT bank_account_type_pk PRIMARY KEY (bank_account_type_id)
 	);
 
@@ -97,4 +97,6 @@ INSERT INTO user_status (user_status_id, status_name) VALUES (2, 'active');
 INSERT INTO user_status (user_status_id, status_name) VALUES (3, 'inactive');
 INSERT INTO bank_account_status (bank_account_status_id, status_name) VALUES (1, 'active');
 INSERT INTO bank_account_status (bank_account_status_id, status_name) VALUES (2, 'inactive');
+INSERT INTO bank_account_type (bank_account_type_id, type_name) VALUES (1, 'Lakossági folyószámla');
+INSERT INTO bank_account_type (bank_account_type_id, type_name) VALUES (2, 'Lakossági hitelszámla');
 COMMIT;

@@ -22,6 +22,11 @@ public class User {
 	private LocalDateTime lastLoginDate;
 	private UserStatus userStatus;
 
+	public User(String loginName, String passwordHash) {
+		this.loginName = loginName;
+		this.passwordHash = passwordHash;
+	}
+
 	public User(String loginName, String passwordHash, String firstName, String lastName, Role role, String postalAddress, String phone, String email, Boolean newsletter, LocalDate dateOfBirth,
 			LocalDateTime registrationDate, LocalDateTime lastLoginDate, UserStatus userStatus) {
 		this.loginName = loginName;

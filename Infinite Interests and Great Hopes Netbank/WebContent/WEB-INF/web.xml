@@ -37,12 +37,39 @@
 		<url-pattern>/login</url-pattern>
 	</servlet-mapping>
 
+	<servlet>
+		<servlet-name>LogoutServlet</servlet-name>
+		<servlet-class>hu.ak_akademia.iigh.servlet.LogoutServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>LogoutServlet</servlet-name>
+		<url-pattern>/logout</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>LoadBankAccountsScreen</servlet-name>
+		<servlet-class>hu.ak_akademia.iigh.servlet.LoadBankAccountsScreen</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>LoadBankAccountsScreen</servlet-name>
+		<url-pattern>/loadBankAccounts</url-pattern>
+	</servlet-mapping>
+
 	<filter>
 		<filter-name>CharacterEncodingFilter</filter-name>
 		<filter-class>hu.ak_akademia.iigh.filter.CharacterEncodingFilter</filter-class>
 	</filter>
 	<filter-mapping>
 		<filter-name>CharacterEncodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<filter>
+		<filter-name>AuthenticationFilter</filter-name>
+		<filter-class>hu.ak_akademia.iigh.filter.AuthenticationFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>AuthenticationFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 
