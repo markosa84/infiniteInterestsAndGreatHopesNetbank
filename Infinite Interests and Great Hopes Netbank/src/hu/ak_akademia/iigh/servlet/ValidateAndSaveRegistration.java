@@ -16,8 +16,8 @@ import hu.ak_akademia.iigh.Role;
 import hu.ak_akademia.iigh.UserStatus;
 import hu.ak_akademia.iigh.db.dao.UserDao;
 import hu.ak_akademia.iigh.db.entity.User;
-import hu.ak_akademia.iigh.db.preparedstatementwriter.CreateUserPreparedStatementWriter;
-import hu.ak_akademia.iigh.db.sqlbuilder.CreateUserSqlBuilder;
+import hu.ak_akademia.iigh.db.preparedstatementwriter.user.CreateUserPreparedStatementWriter;
+import hu.ak_akademia.iigh.db.sqlbuilder.user.CreateUserSqlBuilder;
 import hu.ak_akademia.iigh.util.PasswordManager;
 
 public class ValidateAndSaveRegistration extends HttpServlet {

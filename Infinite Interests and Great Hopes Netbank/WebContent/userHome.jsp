@@ -11,24 +11,18 @@
 <body>
 	<div class="container">
 		<h1>Ügyfél nyitóoldal</h1>
-		<nav class="navbar navbar-expand-lg navbar-light bg-light">
-			<a class="navbar-brand" href="userHome.jsp"><img src="images/logo.jpg" width="30" height="30" alt=""></a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-
-			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<ul class="navbar-nav mr-auto">
-					<li class="nav-item mx-2 active"><a class="nav-link" href="userHome.jsp">Nyitóoldal</a></li>
-					<li class="nav-item mx-2"><a class="nav-link" href="loadBankAccounts">Bankszámlák</a></li>
-					<li class="nav-item mx-2"><a class="nav-link" href="#">Személyes adatok szerkesztése</a></li>
-				</ul>
-				<ul class="navbar-nav">
-					<li class="nav-item mx-2"><a class="nav-link" href="logout">Kijelentkezés</a></li>
-				</ul>
-			</div>
-		</nav>
+		<jsp:include page="navigation.jsp" flush="true">
+			<jsp:param name="activeMenuOption" value="1" />
+		</jsp:include>
 		<p>Üdvözöljük ${loggedInUser.firstName}!</p>
+		<c:if test='${param.message != null && param.message.equals("successfulTransfer")}'>
+			<div class="alert alert-success alert-dismissible fade show" role="alert">
+				<strong>Az átutalási megbízást a bank sikeresen megkapta!</strong>
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+		</c:if>
 	</div>
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>

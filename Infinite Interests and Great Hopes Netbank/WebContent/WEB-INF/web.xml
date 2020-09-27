@@ -55,6 +55,51 @@
 		<url-pattern>/loadBankAccounts</url-pattern>
 	</servlet-mapping>
 
+	<servlet>
+		<servlet-name>LoadBankAccountDetailsScreen</servlet-name>
+		<servlet-class>hu.ak_akademia.iigh.servlet.LoadBankAccountDetailsScreen</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>LoadBankAccountDetailsScreen</servlet-name>
+		<url-pattern>/loadBankAccountDetails</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>ValidateAndSaveBankAccountDetails</servlet-name>
+		<servlet-class>hu.ak_akademia.iigh.servlet.ValidateAndSaveBankAccountDetails</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ValidateAndSaveBankAccountDetails</servlet-name>
+		<url-pattern>/validateAndSaveBankAccountDetails</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>LoadTransferScreen</servlet-name>
+		<servlet-class>hu.ak_akademia.iigh.servlet.LoadTransferScreen</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>LoadTransferScreen</servlet-name>
+		<url-pattern>/loadTransfer</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>SaveTransferScreen</servlet-name>
+		<servlet-class>hu.ak_akademia.iigh.servlet.SaveTransferScreen</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SaveTransferScreen</servlet-name>
+		<url-pattern>/saveTransfer</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>LoadTransactionHistoryScreen</servlet-name>
+		<servlet-class>hu.ak_akademia.iigh.servlet.LoadTransactionHistoryScreen</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>LoadTransactionHistoryScreen</servlet-name>
+		<url-pattern>/loadTransactionHistory</url-pattern>
+	</servlet-mapping>
+
 	<filter>
 		<filter-name>CharacterEncodingFilter</filter-name>
 		<filter-class>hu.ak_akademia.iigh.filter.CharacterEncodingFilter</filter-class>

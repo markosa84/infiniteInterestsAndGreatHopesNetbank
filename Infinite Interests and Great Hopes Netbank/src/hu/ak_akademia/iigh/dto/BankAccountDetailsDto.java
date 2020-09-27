@@ -1,26 +1,23 @@
-package hu.ak_akademia.iigh.db.entity;
+package hu.ak_akademia.iigh.dto;
 
-import hu.ak_akademia.iigh.BankAccountStatus;
-import hu.ak_akademia.iigh.BankAccountType;
-
-public class BankAccount {
+public class BankAccountDetailsDto {
 
 	private String bankAccountNumber;
 	private String aliasName;
-	private String loginName;
 	private Long currentBalance;
 	private String currencyType;
-	private BankAccountStatus bankAccountStatus;
-	private BankAccountType bankAccountType;
+	private String bankAccountStatus;
+	private String bankAccountType;
+	private String lastTransactionTimestamp;
 
-	private BankAccount(Builder builder) {
+	private BankAccountDetailsDto(Builder builder) {
 		this.bankAccountNumber = builder.bankAccountNumber;
 		this.aliasName = builder.aliasName;
-		this.loginName = builder.loginName;
 		this.currentBalance = builder.currentBalance;
 		this.currencyType = builder.currencyType;
 		this.bankAccountStatus = builder.bankAccountStatus;
 		this.bankAccountType = builder.bankAccountType;
+		this.lastTransactionTimestamp = builder.lastTransactionTimestamp;
 	}
 
 	public String getBankAccountNumber() {
@@ -31,28 +28,24 @@ public class BankAccount {
 		return aliasName;
 	}
 
-	public String getLoginName() {
-		return loginName;
-	}
-
 	public Long getCurrentBalance() {
 		return currentBalance;
-	}
-
-	public void setCurrentBalance(Long currentBalance) {
-		this.currentBalance = currentBalance;
 	}
 
 	public String getCurrencyType() {
 		return currencyType;
 	}
 
-	public BankAccountStatus getBankAccountStatus() {
+	public String getBankAccountStatus() {
 		return bankAccountStatus;
 	}
 
-	public BankAccountType getBankAccountType() {
+	public String getBankAccountType() {
 		return bankAccountType;
+	}
+
+	public String getLastTransactionTimestamp() {
+		return lastTransactionTimestamp;
 	}
 
 	public static Builder builder() {
@@ -62,11 +55,11 @@ public class BankAccount {
 	public static final class Builder {
 		private String bankAccountNumber;
 		private String aliasName;
-		private String loginName;
 		private Long currentBalance;
 		private String currencyType;
-		private BankAccountStatus bankAccountStatus;
-		private BankAccountType bankAccountType;
+		private String bankAccountStatus;
+		private String bankAccountType;
+		private String lastTransactionTimestamp;
 
 		private Builder() {
 		}
@@ -81,11 +74,6 @@ public class BankAccount {
 			return this;
 		}
 
-		public Builder withLoginName(String loginName) {
-			this.loginName = loginName;
-			return this;
-		}
-
 		public Builder withCurrentBalance(Long currentBalance) {
 			this.currentBalance = currentBalance;
 			return this;
@@ -96,18 +84,23 @@ public class BankAccount {
 			return this;
 		}
 
-		public Builder withBankAccountStatus(BankAccountStatus bankAccountStatus) {
+		public Builder withBankAccountStatus(String bankAccountStatus) {
 			this.bankAccountStatus = bankAccountStatus;
 			return this;
 		}
 
-		public Builder withBankAccountType(BankAccountType bankAccountType) {
+		public Builder withBankAccountType(String bankAccountType) {
 			this.bankAccountType = bankAccountType;
 			return this;
 		}
 
-		public BankAccount build() {
-			return new BankAccount(this);
+		public Builder withLastTransactionTimestamp(String lastTransactionTimestamp) {
+			this.lastTransactionTimestamp = lastTransactionTimestamp;
+			return this;
+		}
+
+		public BankAccountDetailsDto build() {
+			return new BankAccountDetailsDto(this);
 		}
 	}
 

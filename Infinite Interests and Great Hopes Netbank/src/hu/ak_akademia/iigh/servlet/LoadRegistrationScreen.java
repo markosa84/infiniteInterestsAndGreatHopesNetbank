@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import hu.ak_akademia.iigh.db.dao.RoleDao;
 import hu.ak_akademia.iigh.db.entity.Role;
 import hu.ak_akademia.iigh.db.preparedstatementwriter.EmptyPreparedStatementWriter;
-import hu.ak_akademia.iigh.db.resultsetreader.FullRolesResultSetReader;
-import hu.ak_akademia.iigh.db.sqlbuilder.GetAllRolesSqlBuilder;
+import hu.ak_akademia.iigh.db.resultsetreader.role.FullRolesResultSetReader;
+import hu.ak_akademia.iigh.db.sqlbuilder.role.GetAllRolesSqlBuilder;
 
 public class LoadRegistrationScreen extends HttpServlet {
 

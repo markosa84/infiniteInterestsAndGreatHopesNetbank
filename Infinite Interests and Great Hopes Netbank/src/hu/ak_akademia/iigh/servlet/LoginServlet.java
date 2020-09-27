@@ -13,9 +13,9 @@ import hu.ak_akademia.iigh.IIGHRuntimeException;
 import hu.ak_akademia.iigh.UserStatus;
 import hu.ak_akademia.iigh.db.dao.UserDao;
 import hu.ak_akademia.iigh.db.entity.User;
-import hu.ak_akademia.iigh.db.preparedstatementwriter.GetUserByLoginNameAndPasswordPreparedStatementWriter;
-import hu.ak_akademia.iigh.db.resultsetreader.FullUserResultSetReader;
-import hu.ak_akademia.iigh.db.sqlbuilder.GetUserByLoginNameAndPasswordSqlBuilder;
+import hu.ak_akademia.iigh.db.preparedstatementwriter.user.GetUserByLoginNameAndPasswordPreparedStatementWriter;
+import hu.ak_akademia.iigh.db.resultsetreader.user.FullUserResultSetReader;
+import hu.ak_akademia.iigh.db.sqlbuilder.user.GetUserByLoginNameAndPasswordSqlBuilder;
 import hu.ak_akademia.iigh.util.PasswordManager;
 
 public class LoginServlet extends HttpServlet {

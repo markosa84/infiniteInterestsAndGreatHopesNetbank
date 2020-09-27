@@ -20,6 +20,7 @@ CREATE TABLE roles (
 CREATE TABLE user_status (
 	user_status_id NUMERIC(20) NOT NULL,
 	status_name VARCHAR(15) NOT NULL,
+	status_display_name VARCHAR(30) NOT NULL,
 	CONSTRAINT user_status_pk PRIMARY KEY (user_status_id)
 	);
 
@@ -51,6 +52,7 @@ CREATE TABLE users (
 CREATE TABLE bank_account_status (
 	bank_account_status_id NUMERIC(20) NOT NULL,
 	status_name VARCHAR(15) NOT NULL,
+	status_display_name VARCHAR(30) NOT NULL,
 	CONSTRAINT bank_account_status_pk PRIMARY KEY (bank_account_status_id)
 	);
 
@@ -81,7 +83,7 @@ CREATE TABLE transaction (
 	from_bank_account_number VARCHAR(34) NOT NULL,
 	to_bank_account_number VARCHAR(34) NOT NULL,
 	beneficiary_name VARCHAR(30) NOT NULL,
-	transaction_date TIMESTAMP NOT NULL,
+	transaction_date TIMESTAMP DEFAULT NOW() NOT NULL,
 	amount NUMERIC(20) NOT NULL,
 	transaction_comment VARCHAR(140),
 	CONSTRAINT transaction_pk PRIMARY KEY (transaction_id),
@@ -90,13 +92,29 @@ CREATE TABLE transaction (
 	CONSTRAINT transaction_ck CHECK (amount < 2000000)
 	);
 
-INSERT INTO roles (role_id, role_name) VALUES (1, 'admin', 'Adminisztrátor');
-INSERT INTO roles (role_id, role_name) VALUES (2, 'user', 'Ügyfél');
-INSERT INTO user_status (user_status_id, status_name) VALUES (1, 'pending');
-INSERT INTO user_status (user_status_id, status_name) VALUES (2, 'active');
-INSERT INTO user_status (user_status_id, status_name) VALUES (3, 'inactive');
-INSERT INTO bank_account_status (bank_account_status_id, status_name) VALUES (1, 'active');
-INSERT INTO bank_account_status (bank_account_status_id, status_name) VALUES (2, 'inactive');
+INSERT INTO roles (role_id, role_name, role_display_name) VALUES (1, 'admin', 'Adminisztrátor');
+INSERT INTO roles (role_id, role_name, role_display_name) VALUES (2, 'user', 'Ügyfél');
+INSERT INTO user_status (user_status_id, status_name, status_display_name) VALUES (1, 'pending', 'Aktiválás függőben');
+INSERT INTO user_status (user_status_id, status_name, status_display_name) VALUES (2, 'active', 'Aktív');
+INSERT INTO user_status (user_status_id, status_name, status_display_name) VALUES (3, 'inactive', 'Inaktív');
+INSERT INTO bank_account_status (bank_account_status_id, status_name, status_display_name) VALUES (1, 'active', 'Aktív');
+INSERT INTO bank_account_status (bank_account_status_id, status_name, status_display_name) VALUES (2, 'inactive', 'Inaktív');
 INSERT INTO bank_account_type (bank_account_type_id, type_name) VALUES (1, 'Lakossági folyószámla');
 INSERT INTO bank_account_type (bank_account_type_id, type_name) VALUES (2, 'Lakossági hitelszámla');
+
+-- mintaadatok
+INSERT INTO users (login_name, password_hash, first_name, last_name, role_id, postal_address, phone, email, newsletter, date_of_birth, user_status_id)
+VALUES ('teszt001', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'Elek', 'Teszt', 2, '1038. Budapest, Fürdő utca 2', '+36 20 123 4567', 'teszt.elek@gmail.com', 'N', '1956-11-11', 2);
+
+INSERT INTO bank_account (bank_account_number, alias_name, login_name, current_balance, currency_type, bank_account_status_id, bank_account_type_id)
+VALUES ('00000000-11111111-00000000', 'Online Bankszámlám', 'teszt001', 150000, 'HUF', 1, 1);
+INSERT INTO bank_account (bank_account_number, alias_name, login_name, current_balance, currency_type, bank_account_status_id, bank_account_type_id)
+VALUES ('22222222-33333333-44444444', 'Hitelkeretes Bankszámlám', 'teszt001', 70000, 'HUF', 1, 2);
+
+INSERT INTO transaction (transaction_id, from_bank_account_number, to_bank_account_number, beneficiary_name, transaction_date, amount, transaction_comment)
+VALUES (nextval('transaction_sequence'), '00000000-11111111-00000000', '22222222-33333333-44444444', 'Teszt', TIMESTAMP '2004-10-19 10:23:54', 23000, 'nincs komment');
+
+INSERT INTO transaction (transaction_id, from_bank_account_number, to_bank_account_number, beneficiary_name, transaction_date, amount, transaction_comment)
+VALUES (nextval('transaction_sequence'), '22222222-33333333-44444444', '00000000-11111111-00000000', 'Béla', TIMESTAMP '2006-10-19 10:23:54', 33000, 'visszafizetés');
+
 COMMIT;

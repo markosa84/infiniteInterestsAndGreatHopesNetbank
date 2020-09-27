@@ -1,9 +1,10 @@
-package hu.ak_akademia.iigh.db.preparedstatementwriter;
+package hu.ak_akademia.iigh.db.preparedstatementwriter.bankaccount;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 import hu.ak_akademia.iigh.db.entity.BankAccount;
+import hu.ak_akademia.iigh.db.preparedstatementwriter.PreparedStatementWriter;
 
 public class GetBankAccountsForUserPreparedStatementWriter implements PreparedStatementWriter<BankAccount> {
 

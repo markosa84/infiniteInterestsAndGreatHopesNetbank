@@ -1,4 +1,4 @@
-package hu.ak_akademia.iigh.db.resultsetreader;
+package hu.ak_akademia.iigh.db.resultsetreader.bankaccount;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -8,6 +8,7 @@ import java.util.List;
 import hu.ak_akademia.iigh.BankAccountStatus;
 import hu.ak_akademia.iigh.BankAccountType;
 import hu.ak_akademia.iigh.db.entity.BankAccount;
+import hu.ak_akademia.iigh.db.resultsetreader.ResultSetReader;
 
 public class FullBankAccountResultSetReader implements ResultSetReader<BankAccount> {
 
@@ -24,7 +25,15 @@ public class FullBankAccountResultSetReader implements ResultSetReader<BankAccou
 			BankAccountStatus bankAccountStatus = BankAccountStatus.getById(bankAccountStatusId);
 			long bankAccountTypeId = resultSet.getLong("bank_account_type_id");
 			BankAccountType bankAccountType = BankAccountType.getById(bankAccountTypeId);
-			BankAccount bankAccount = new BankAccount(bankAccountNumber, aliasName, loginName, currentBalance, currencyType, bankAccountStatus, bankAccountType);
+			BankAccount bankAccount = BankAccount.builder()
+					.withBankAccountNumber(bankAccountNumber)
+					.withAliasName(aliasName)
+					.withLoginName(loginName)
+					.withCurrentBalance(currentBalance)
+					.withCurrencyType(currencyType)
+					.withBankAccountStatus(bankAccountStatus)
+					.withBankAccountType(bankAccountType)
+					.build();
 			bankAccounts.add(bankAccount);
 		}
 		return bankAccounts;

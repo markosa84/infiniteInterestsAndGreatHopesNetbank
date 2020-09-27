@@ -11,9 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 import hu.ak_akademia.iigh.db.dao.BankAccountDao;
 import hu.ak_akademia.iigh.db.entity.BankAccount;
 import hu.ak_akademia.iigh.db.entity.User;
-import hu.ak_akademia.iigh.db.preparedstatementwriter.GetBankAccountsForUserPreparedStatementWriter;
-import hu.ak_akademia.iigh.db.resultsetreader.FullBankAccountResultSetReader;
-import hu.ak_akademia.iigh.db.sqlbuilder.GetBankAccountsForUserSqlBuilder;
+import hu.ak_akademia.iigh.db.preparedstatementwriter.bankaccount.GetBankAccountsForUserPreparedStatementWriter;
+import hu.ak_akademia.iigh.db.resultsetreader.bankaccount.FullBankAccountResultSetReader;
+import hu.ak_akademia.iigh.db.sqlbuilder.bankaccount.GetBankAccountsForUserSqlBuilder;
 
 public class LoadBankAccountsScreen extends HttpServlet {
 
@@ -24,7 +24,10 @@ public class LoadBankAccountsScreen extends HttpServlet {
 		User loggedInUser = (User) request.getSession()
 				.getAttribute("loggedInUser");
 		BankAccountDao bankAccountDao = new BankAccountDao(new GetBankAccountsForUserSqlBuilder(), new GetBankAccountsForUserPreparedStatementWriter(), new FullBankAccountResultSetReader());
-		List<BankAccount> bankAccounts = bankAccountDao.retrieve(new BankAccount(loggedInUser.getLoginName()));
+		BankAccount bankAccount = BankAccount.builder()
+				.withLoginName(loggedInUser.getLoginName())
+				.build();
+		List<BankAccount> bankAccounts = bankAccountDao.retrieve(bankAccount);
 		request.setAttribute("bankAccounts", bankAccounts);
 		request.getRequestDispatcher("bankAccounts.jsp")
 				.forward(request, response);

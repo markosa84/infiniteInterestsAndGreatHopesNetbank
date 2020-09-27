@@ -1,4 +1,6 @@
-package hu.ak_akademia.iigh.db.sqlbuilder;
+package hu.ak_akademia.iigh.db.sqlbuilder.user;
+
+import hu.ak_akademia.iigh.db.sqlbuilder.SqlBuilder;
 
 public class CreateUserSqlBuilder implements SqlBuilder {
 

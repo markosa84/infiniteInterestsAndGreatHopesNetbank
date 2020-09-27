@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!doctype html>
 <html lang="en">
 <head>
@@ -11,29 +12,15 @@
 <body>
 	<div class="container">
 		<h1>Bankszámlák</h1>
-		<nav class="navbar navbar-expand-lg navbar-light bg-light">
-			<a class="navbar-brand" href="userHome.jsp"><img src="images/logo.jpg" width="30" height="30" alt=""></a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-
-			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<ul class="navbar-nav mr-auto">
-					<li class="nav-item mx-2"><a class="nav-link" href="userHome.jsp">Nyitóoldal</a></li>
-					<li class="nav-item mx-2 active"><a class="nav-link" href="loadBankAccounts">Bankszámlák</a></li>
-					<li class="nav-item mx-2"><a class="nav-link" href="#">Személyes adatok szerkesztése</a></li>
-				</ul>
-				<ul class="navbar-nav">
-					<li class="nav-item mx-2"><a class="nav-link" href="logout">Kijelentkezés</a></li>
-				</ul>
-			</div>
-		</nav>
+		<jsp:include page="navigation.jsp" flush="true">
+			<jsp:param name="activeMenuOption" value="2" />
+		</jsp:include>
 		<p>Válasszon egyet az alábbi bankszámlák közül!</p>
 		<table class="table table-striped table-hover">
 			<thead>
 				<tr>
 					<th>Bankszámlaszám</th>
-					<th>Aktuális egyenleg</th>
+					<th class="text-right">Aktuális egyenleg</th>
 					<th>Devizanem</th>
 					<th></th>
 					<th></th>
@@ -44,11 +31,26 @@
 				<c:forEach var="bankAccount" items="${bankAccounts}">
 					<tr>
 						<td>${bankAccount.bankAccountNumber}</td>
-						<td>${bankAccount.currentBalance}</td>
+						<td class="text-right"><fmt:formatNumber type="number" groupingUsed="true" value="${bankAccount.currentBalance}" /></td>
 						<td>${bankAccount.currencyType}</td>
-						<td><a href="#">Részletek</a></td>
-						<td><a href="#">Átutalás</a></td>
-						<td><a href="#">Tranzakciós előzmények</a></td>
+						<td>
+							<form action="loadBankAccountDetails" method="post">
+								<input type="hidden" name="bankAccountNumber" value="${bankAccount.bankAccountNumber}">
+								<input type="submit" value="Részletek" class="btn btn-primary">
+							</form>
+						</td>
+						<td>
+							<form action="loadTransfer" method="post">
+								<input type="hidden" name="bankAccountNumber" value="${bankAccount.bankAccountNumber}">
+								<input type="submit" value="Átutalás" class="btn btn-primary">
+							</form>
+						</td>
+						<td>
+							<form action="loadTransactionHistory" method="post">
+								<input type="hidden" name="bankAccountNumber" value="${bankAccount.bankAccountNumber}">
+								<input type="submit" value="Tranzakciós előzmények" class="btn btn-primary">
+							</form>
+						</td>
 					</tr>
 				</c:forEach>
 			</tbody>

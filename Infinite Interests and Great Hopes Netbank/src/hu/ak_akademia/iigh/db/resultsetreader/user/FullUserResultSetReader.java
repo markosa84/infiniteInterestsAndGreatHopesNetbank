@@ -1,4 +1,4 @@
-package hu.ak_akademia.iigh.db.resultsetreader;
+package hu.ak_akademia.iigh.db.resultsetreader.user;
 
 import java.sql.Date;
 import java.sql.ResultSet;
@@ -12,6 +12,7 @@ import java.util.List;
 import hu.ak_akademia.iigh.Role;
 import hu.ak_akademia.iigh.UserStatus;
 import hu.ak_akademia.iigh.db.entity.User;
+import hu.ak_akademia.iigh.db.resultsetreader.ResultSetReader;
 
 public class FullUserResultSetReader implements ResultSetReader<User> {
 

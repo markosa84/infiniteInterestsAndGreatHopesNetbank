@@ -1,10 +1,11 @@
-package hu.ak_akademia.iigh.db.preparedstatementwriter;
+package hu.ak_akademia.iigh.db.preparedstatementwriter.user;
 
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 import hu.ak_akademia.iigh.db.entity.User;
+import hu.ak_akademia.iigh.db.preparedstatementwriter.PreparedStatementWriter;
 
 public class CreateUserPreparedStatementWriter implements PreparedStatementWriter<User> {
 

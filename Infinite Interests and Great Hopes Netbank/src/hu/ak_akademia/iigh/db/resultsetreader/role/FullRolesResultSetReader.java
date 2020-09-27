@@ -1,4 +1,4 @@
-package hu.ak_akademia.iigh.db.resultsetreader;
+package hu.ak_akademia.iigh.db.resultsetreader.role;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import hu.ak_akademia.iigh.db.entity.Role;
+import hu.ak_akademia.iigh.db.resultsetreader.ResultSetReader;
 
 public class FullRolesResultSetReader implements ResultSetReader<Role> {
 
