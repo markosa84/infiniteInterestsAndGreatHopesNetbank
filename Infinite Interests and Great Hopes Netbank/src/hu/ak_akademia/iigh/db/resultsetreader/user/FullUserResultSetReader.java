@@ -44,7 +44,21 @@ public class FullUserResultSetReader implements ResultSetReader<User> {
 			}
 			Long userStatusId = resultSet.getLong("user_status_id");
 			UserStatus userStatus = UserStatus.getById(userStatusId);
-			User user = new User(loginName, passwordHash, firstName, lastName, role, postalAddress, phone, email, newsletter, dateOfBirth, registrationDate, lastLoginDate, userStatus);
+			User user = User.builder()
+					.withLoginName(loginName)
+					.withPasswordHash(passwordHash)
+					.withFirstName(firstName)
+					.withLastName(lastName)
+					.withRole(role)
+					.withPostalAddress(postalAddress)
+					.withPhone(phone)
+					.withEmail(email)
+					.withNewsletter(newsletter)
+					.withDateOfBirth(dateOfBirth)
+					.withRegistrationDate(registrationDate)
+					.withLastLoginDate(lastLoginDate)
+					.withUserStatus(userStatus)
+					.build();
 			users.add(user);
 		}
 		return users;

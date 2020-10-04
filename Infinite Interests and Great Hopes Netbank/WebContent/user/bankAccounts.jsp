@@ -12,7 +12,7 @@
 <body>
 	<div class="container">
 		<h1>Bankszámlák</h1>
-		<jsp:include page="navigation.jsp" flush="true">
+		<jsp:include page="userNavigation.jsp" flush="true">
 			<jsp:param name="activeMenuOption" value="2" />
 		</jsp:include>
 		<p>Válasszon egyet az alábbi bankszámlák közül!</p>

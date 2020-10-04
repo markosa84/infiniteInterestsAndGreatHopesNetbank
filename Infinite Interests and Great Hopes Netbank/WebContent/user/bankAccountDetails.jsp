@@ -12,7 +12,7 @@
 <body>
 	<div class="container">
 		<h1>Bankszámla részletei</h1>
-		<jsp:include page="navigation.jsp" flush="true">
+		<jsp:include page="userNavigation.jsp" flush="true">
 			<jsp:param name="activeMenuOption" value="2" />
 		</jsp:include>
 		<div class="mx-auto w-50">

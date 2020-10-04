@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-	<a class="navbar-brand" href="userHome.jsp"><img src="images/logo.jpg" width="30" height="30" alt=""></a>
+	<a class="navbar-brand" href="userHome.jsp"><img src="${pageContext.request.contextPath}/images/logo.jpg" width="30" height="30" alt=""></a>
 	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 		<span class="navbar-toggler-icon"></span>
 	</button>
@@ -14,7 +14,7 @@
 			<li class="nav-item mx-2<c:if test="${param.activeMenuOption == 3}"> active</c:if>"><a class="nav-link" href="loadUserDataForProfileEdit">Személyes adatok szerkesztése</a></li>
 		</ul>
 		<ul class="navbar-nav">
-			<li class="nav-item mx-2"><a class="nav-link" href="logout">Kijelentkezés</a></li>
+			<li class="nav-item mx-2"><a class="nav-link" href="${pageContext.request.contextPath}/logout">Kijelentkezés</a></li>
 		</ul>
 	</div>
 </nav>

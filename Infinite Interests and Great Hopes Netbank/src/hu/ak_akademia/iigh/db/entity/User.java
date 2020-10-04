@@ -22,26 +22,20 @@ public class User {
 	private LocalDateTime lastLoginDate;
 	private UserStatus userStatus;
 
-	public User(String loginName, String passwordHash) {
-		this.loginName = loginName;
-		this.passwordHash = passwordHash;
-	}
-
-	public User(String loginName, String passwordHash, String firstName, String lastName, Role role, String postalAddress, String phone, String email, Boolean newsletter, LocalDate dateOfBirth,
-			LocalDateTime registrationDate, LocalDateTime lastLoginDate, UserStatus userStatus) {
-		this.loginName = loginName;
-		this.passwordHash = passwordHash;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.role = role;
-		this.postalAddress = postalAddress;
-		this.phone = phone;
-		this.email = email;
-		this.newsletter = newsletter;
-		this.dateOfBirth = dateOfBirth;
-		this.registrationDate = registrationDate;
-		this.lastLoginDate = lastLoginDate;
-		this.userStatus = userStatus;
+	private User(Builder builder) {
+		this.loginName = builder.loginName;
+		this.passwordHash = builder.passwordHash;
+		this.firstName = builder.firstName;
+		this.lastName = builder.lastName;
+		this.role = builder.role;
+		this.postalAddress = builder.postalAddress;
+		this.phone = builder.phone;
+		this.email = builder.email;
+		this.newsletter = builder.newsletter;
+		this.dateOfBirth = builder.dateOfBirth;
+		this.registrationDate = builder.registrationDate;
+		this.lastLoginDate = builder.lastLoginDate;
+		this.userStatus = builder.userStatus;
 	}
 
 	public String getLoginName() {
@@ -148,37 +142,96 @@ public class User {
 		this.userStatus = userStatus;
 	}
 
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("User [loginName=");
-		builder.append(loginName);
-		builder.append(", passwordHash=");
-		builder.append(passwordHash);
-		builder.append(", firstName=");
-		builder.append(firstName);
-		builder.append(", lastName=");
-		builder.append(lastName);
-		builder.append(", role=");
-		builder.append(role);
-		builder.append(", postalAddress=");
-		builder.append(postalAddress);
-		builder.append(", phone=");
-		builder.append(phone);
-		builder.append(", email=");
-		builder.append(email);
-		builder.append(", newsletter=");
-		builder.append(newsletter);
-		builder.append(", dateOfBirth=");
-		builder.append(dateOfBirth);
-		builder.append(", registrationDate=");
-		builder.append(registrationDate);
-		builder.append(", lastLoginDate=");
-		builder.append(lastLoginDate);
-		builder.append(", userStatus=");
-		builder.append(userStatus);
-		builder.append("]");
-		return builder.toString();
+	public static Builder builder() {
+		return new Builder();
+	}
+
+	public static final class Builder {
+		private String loginName;
+		private String passwordHash;
+		private String firstName;
+		private String lastName;
+		private Role role;
+		private String postalAddress;
+		private String phone;
+		private String email;
+		private Boolean newsletter;
+		private LocalDate dateOfBirth;
+		private LocalDateTime registrationDate;
+		private LocalDateTime lastLoginDate;
+		private UserStatus userStatus;
+
+		private Builder() {
+		}
+
+		public Builder withLoginName(String loginName) {
+			this.loginName = loginName;
+			return this;
+		}
+
+		public Builder withPasswordHash(String passwordHash) {
+			this.passwordHash = passwordHash;
+			return this;
+		}
+
+		public Builder withFirstName(String firstName) {
+			this.firstName = firstName;
+			return this;
+		}
+
+		public Builder withLastName(String lastName) {
+			this.lastName = lastName;
+			return this;
+		}
+
+		public Builder withRole(Role role) {
+			this.role = role;
+			return this;
+		}
+
+		public Builder withPostalAddress(String postalAddress) {
+			this.postalAddress = postalAddress;
+			return this;
+		}
+
+		public Builder withPhone(String phone) {
+			this.phone = phone;
+			return this;
+		}
+
+		public Builder withEmail(String email) {
+			this.email = email;
+			return this;
+		}
+
+		public Builder withNewsletter(Boolean newsletter) {
+			this.newsletter = newsletter;
+			return this;
+		}
+
+		public Builder withDateOfBirth(LocalDate dateOfBirth) {
+			this.dateOfBirth = dateOfBirth;
+			return this;
+		}
+
+		public Builder withRegistrationDate(LocalDateTime registrationDate) {
+			this.registrationDate = registrationDate;
+			return this;
+		}
+
+		public Builder withLastLoginDate(LocalDateTime lastLoginDate) {
+			this.lastLoginDate = lastLoginDate;
+			return this;
+		}
+
+		public Builder withUserStatus(UserStatus userStatus) {
+			this.userStatus = userStatus;
+			return this;
+		}
+
+		public User build() {
+			return new User(this);
+		}
 	}
 
 }

@@ -30,7 +30,10 @@ public class LoginServlet extends HttpServlet {
 		// validáció
 
 		String passwordHash = new PasswordManager().encrypt(password);
-		User user = new User(loginName, passwordHash);
+		User user = User.builder()
+				.withLoginName(loginName)
+				.withPasswordHash(passwordHash)
+				.build();
 		UserDao userDao = new UserDao(new GetUserByLoginNameAndPasswordSqlBuilder(), new GetUserByLoginNameAndPasswordPreparedStatementWriter(), new FullUserResultSetReader());
 		List<User> users = userDao.retrieve(user);
 		if (users.isEmpty()) {
@@ -46,10 +49,10 @@ public class LoginServlet extends HttpServlet {
 				String redirectTo;
 				switch (userToLogIn.getRole()) {
 				case ADMIN:
-					redirectTo = "adminHome.jsp";
+					redirectTo = "admin/adminHome.jsp";
 					break;
 				case USER:
-					redirectTo = "userHome.jsp";
+					redirectTo = "user/userHome.jsp";
 					break;
 				default:
 					throw new IIGHRuntimeException("Illegal role detected: " + userToLogIn.getRole());

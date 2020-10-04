@@ -11,7 +11,7 @@
 <body>
 	<div class="container w-50">
 		<h1>Személyes adatok</h1>
-		<jsp:include page="navigation.jsp" flush="true">
+		<jsp:include page="userNavigation.jsp" flush="true">
 			<jsp:param name="activeMenuOption" value="3" />
 		</jsp:include>
 		<c:if test="${saveSuccessful}">

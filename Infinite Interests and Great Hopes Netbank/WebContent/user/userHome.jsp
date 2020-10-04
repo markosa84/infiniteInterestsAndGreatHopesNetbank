@@ -11,7 +11,7 @@
 <body>
 	<div class="container">
 		<h1>Ügyfél nyitóoldal</h1>
-		<jsp:include page="navigation.jsp" flush="true">
+		<jsp:include page="userNavigation.jsp" flush="true">
 			<jsp:param name="activeMenuOption" value="1" />
 		</jsp:include>
 		<p>Üdvözöljük ${loggedInUser.firstName}!</p>

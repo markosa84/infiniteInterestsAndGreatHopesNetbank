@@ -105,6 +105,12 @@ INSERT INTO bank_account_type (bank_account_type_id, type_name) VALUES (2, 'Lako
 -- mintaadatok
 INSERT INTO users (login_name, password_hash, first_name, last_name, role_id, postal_address, phone, email, newsletter, date_of_birth, user_status_id)
 VALUES ('teszt001', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'Elek', 'Teszt', 2, '1038. Budapest, Fürdő utca 2', '+36 20 123 4567', 'teszt.elek@gmail.com', 'N', '1956-11-11', 2);
+INSERT INTO users (login_name, password_hash, first_name, last_name, role_id, postal_address, phone, email, newsletter, date_of_birth, user_status_id)
+VALUES ('teszt002', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'Géza', 'Tóth', 2, '1038. Budapest, Fürdő utca 30', '+36 20 111 2222', 'toth.geza@gmail.com', 'N', '1956-01-18', 1);
+INSERT INTO users (login_name, password_hash, first_name, last_name, role_id, postal_address, phone, email, newsletter, date_of_birth, user_status_id)
+VALUES ('teszt003', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'Margaréta', 'Szabó', 2, '1038. Budapest, Fürdő utca 40', '+36 20 445 3333', 'szabo.margareta@gmail.com', 'N', '1956-02-16', 1);
+INSERT INTO users (login_name, password_hash, first_name, last_name, role_id, postal_address, phone, email, newsletter, date_of_birth, user_status_id)
+VALUES ('admin001', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'Béla', 'Kovács', 1, '1038. Budapest, Fürdő utca 2', '+36 20 123 7654', 'kovacs.bela@gmail.com', 'N', '1965-05-15', 2);
 
 INSERT INTO bank_account (bank_account_number, alias_name, login_name, current_balance, currency_type, bank_account_status_id, bank_account_type_id)
 VALUES ('00000000-11111111-00000000', 'Online Bankszámlám', 'teszt001', 150000, 'HUF', 1, 1);

@@ -9,8 +9,20 @@
 <title>Adminisztrátori nyitóoldal</title>
 </head>
 <body>
-	<div class="container w-50">
+	<div class="container">
 		<h1>Adminisztrátori nyitóoldal</h1>
+		<jsp:include page="adminNavigation.jsp" flush="true">
+			<jsp:param name="activeMenuOption" value="1" />
+		</jsp:include>
+		<p>Üdvözöljük ${loggedInUser.firstName}!</p>
+		<c:if test='${param.message != null}'>
+			<div class="alert alert-success alert-dismissible fade show" role="alert">
+				<strong>${param.message}</strong>
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+		</c:if>
 	</div>
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>

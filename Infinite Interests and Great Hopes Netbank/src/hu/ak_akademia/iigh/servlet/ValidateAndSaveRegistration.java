@@ -60,7 +60,20 @@ public class ValidateAndSaveRegistration extends HttpServlet {
 			boolean newsletter = newsletterAsString != null;
 			LocalDate dateOfBirth = LocalDate.parse(dateOfBirthAsString, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 			LocalDateTime now = LocalDateTime.now();
-			User user = new User(loginName, passwordHash, firstName, lastName, role, address, phone, email, newsletter, dateOfBirth, now, null, UserStatus.PENDING);
+			User user = User.builder()
+					.withLoginName(loginName)
+					.withPasswordHash(passwordHash)
+					.withFirstName(firstName)
+					.withLastName(lastName)
+					.withRole(role)
+					.withPostalAddress(address)
+					.withPhone(phone)
+					.withEmail(email)
+					.withNewsletter(newsletter)
+					.withDateOfBirth(dateOfBirth)
+					.withRegistrationDate(now)
+					.withUserStatus(UserStatus.PENDING)
+					.build();
 			UserDao userDao = new UserDao(new CreateUserSqlBuilder(), new CreateUserPreparedStatementWriter());
 			userDao.create(user);
 			response.sendRedirect("login.jsp?registrationSuccessful=true");
