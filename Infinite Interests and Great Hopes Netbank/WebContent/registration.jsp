@@ -50,7 +50,7 @@
 				</select>
 			</div>
 			<div class="form-group">
-				<label for="address">Lakcím</label>
+				<label for="address">Levelezési cím</label>
 				<input type="text" class="form-control" name="address" id="address" placeholder="1038. Budapest, Fürdő utca 2." value="${param.address}">
 			</div>
 			<div class="form-group">

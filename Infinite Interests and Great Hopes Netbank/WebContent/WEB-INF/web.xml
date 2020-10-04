@@ -100,6 +100,24 @@
 		<url-pattern>/loadTransactionHistory</url-pattern>
 	</servlet-mapping>
 
+	<servlet>
+		<servlet-name>LoadProfileEditScreen</servlet-name>
+		<servlet-class>hu.ak_akademia.iigh.servlet.LoadProfileEditScreen</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>LoadProfileEditScreen</servlet-name>
+		<url-pattern>/loadUserDataForProfileEdit</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>SaveProfileEditScreen</servlet-name>
+		<servlet-class>hu.ak_akademia.iigh.servlet.SaveProfileEditScreen</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SaveProfileEditScreen</servlet-name>
+		<url-pattern>/saveProfile</url-pattern>
+	</servlet-mapping>
+
 	<filter>
 		<filter-name>CharacterEncodingFilter</filter-name>
 		<filter-class>hu.ak_akademia.iigh.filter.CharacterEncodingFilter</filter-class>

@@ -11,7 +11,7 @@
 		<ul class="navbar-nav mr-auto">
 			<li class="nav-item mx-2<c:if test="${param.activeMenuOption == 1}"> active</c:if>"><a class="nav-link" href="userHome.jsp">Nyitóoldal</a></li>
 			<li class="nav-item mx-2<c:if test="${param.activeMenuOption == 2}"> active</c:if>"><a class="nav-link" href="loadBankAccounts">Bankszámlák</a></li>
-			<li class="nav-item mx-2<c:if test="${param.activeMenuOption == 3}"> active</c:if>"><a class="nav-link" href="#">Személyes adatok szerkesztése</a></li>
+			<li class="nav-item mx-2<c:if test="${param.activeMenuOption == 3}"> active</c:if>"><a class="nav-link" href="loadUserDataForProfileEdit">Személyes adatok szerkesztése</a></li>
 		</ul>
 		<ul class="navbar-nav">
 			<li class="nav-item mx-2"><a class="nav-link" href="logout">Kijelentkezés</a></li>
