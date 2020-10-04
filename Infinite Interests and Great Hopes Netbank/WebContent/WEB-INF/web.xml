@@ -136,6 +136,24 @@
 		<url-pattern>/admin/approveUsers</url-pattern>
 	</servlet-mapping>
 
+	<servlet>
+		<servlet-name>LoadCreateBankAccountScreen</servlet-name>
+		<servlet-class>hu.ak_akademia.iigh.servlet.LoadCreateBankAccountScreen</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>LoadCreateBankAccountScreen</servlet-name>
+		<url-pattern>/admin/loadCreateBankAccount</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>CreateBankAccount</servlet-name>
+		<servlet-class>hu.ak_akademia.iigh.servlet.CreateBankAccount</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CreateBankAccount</servlet-name>
+		<url-pattern>/admin/createBankAccount</url-pattern>
+	</servlet-mapping>
+
 	<filter>
 		<filter-name>CharacterEncodingFilter</filter-name>
 		<filter-class>hu.ak_akademia.iigh.filter.CharacterEncodingFilter</filter-class>

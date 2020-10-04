@@ -15,9 +15,9 @@
 			<jsp:param name="activeMenuOption" value="1" />
 		</jsp:include>
 		<p>Üdvözöljük ${loggedInUser.firstName}!</p>
-		<c:if test='${param.message != null}'>
+		<c:if test='${param.message != null && param.message.equals("successfulBankAccountCreation")}'>
 			<div class="alert alert-success alert-dismissible fade show" role="alert">
-				<strong>${param.message}</strong>
+				<strong>Az új bankszámla sikeresen létrehozva.</strong>
 				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>

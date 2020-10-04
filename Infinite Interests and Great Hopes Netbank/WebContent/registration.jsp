@@ -9,7 +9,6 @@
 <title>Regisztráció</title>
 </head>
 <body>
-	<!-- 	date_of_birth DATE, -->
 	<div class="container w-50">
 		<h1>Regisztráció</h1>
 		<form action="validateAndSaveRegistration" method="post">
